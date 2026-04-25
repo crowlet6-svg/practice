@@ -4,30 +4,6 @@
 #include <algorithm>
 
 /**
- * @brief calculates the middle most number in a sorted list
- * 
- * @param data 
- */
-
-void median(std::vector<int>& data);
-
-/**
- * @brief Calculates the highest and lowest number in a sorted list
- * 
- * @param data 
- */
-
-void topBottom(std::vector<int>& data);
-
-/**
- * @brief Calculates the average of the sum of the files' numbers
- * 
- * @param data 
- */
-
-void average(std::vector<int>& data);
-
-/**
  * @brief Extracts the numbers from a number file.
  * 
  * @param writeTo 
