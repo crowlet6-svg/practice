@@ -9,7 +9,7 @@
  * @param data 
  */
 
-void Median(std::vector<int> data);
+void median(std::vector<int>& data);
 
 /**
  * @brief Calculates the highest and lowest number in a sorted list
@@ -17,7 +17,7 @@ void Median(std::vector<int> data);
  * @param data 
  */
 
-void Topbottom(std::vector<int> data);
+void topBottom(std::vector<int>& data);
 
 /**
  * @brief Calculates the average of the sum of the files' numbers
@@ -25,7 +25,7 @@ void Topbottom(std::vector<int> data);
  * @param data 
  */
 
-void avg(std::vector<int> data);
+void average(std::vector<int>& data);
 
 /**
  * @brief Extracts the numbers from a number file.
@@ -45,13 +45,17 @@ int main(){
     std::string fileName;
     std::cin >> fileName;
     data = extractSend(file, fileName);
+
+    if(data.empty()){
+        return 1;
+    }
     std::cout << "Data read from file:" << std::endl;
 
-    avg(data);
+    average(data);
 
-    Topbottom(data);
+    topBottom(data);
 
-    Median(data);
+    median(data);
 
 
 
@@ -64,7 +68,10 @@ std::vector<int> extractSend(std::fstream& writeTo, std::string fileName) {
     std::vector<int> data;
     std::string line;
     std::cout << "Reading data from file: " << fileName << std::endl;
-
+        if(!writeTo){
+            std::cerr << "Error opening file: " << fileName << std::endl;
+            return data; // Return an empty vector if the file cannot be opened
+        }
         while(std::getline(writeTo, line)) {
         if (!line.empty()) {  // Also skip empty lines just in case
             data.push_back(std::stoi(line));
@@ -76,18 +83,18 @@ std::vector<int> extractSend(std::fstream& writeTo, std::string fileName) {
     return data;
 }
 
-void avg(std::vector<int> data){
+void average(std::vector<int>& data){
     std::cout << "------Avg------" << std::endl;
-    int64_t sum;
+    int64_t sum = 0;
 
     for(int i = 0; i < data.size(); i++){
         sum += data[i];
     }
-    sum = sum / 2;
-    std::cout << sum << std::endl;
+    int Average = sum / data.size();
+    std::cout << "Average: " << Average << std::endl;
 }
 
-void Topbottom(std::vector<int> data){
+void topBottom(std::vector<int>& data){
     std::cout << "------High/Low------" << std::endl;
 
 
@@ -95,7 +102,7 @@ void Topbottom(std::vector<int> data){
     std::cout << "Low : " << data[0] << std::endl;
 }
 
-void Median(std::vector<int> data){
+void median(std::vector<int>& data){
     std::cout << "------Median------" << std::endl;
 
     if((data.size()) % 2 == 0){
