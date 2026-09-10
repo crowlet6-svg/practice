@@ -11,6 +11,7 @@
  * @return std::vector<int> 
  */
 
+
 std::vector<int> extractSend(std::fstream& writeTo, std::string fileName);
 
 int main(){
@@ -63,7 +64,7 @@ void average(std::vector<int>& data){
     std::cout << "------Avg------" << std::endl;
     int64_t sum = 0;
 
-    for(int i = 0; i < data.size(); i++){
+    for(size_t i = 0; i < data.size() - 1; i++){
         sum += data[i];
     }
     int Average = sum / data.size();
@@ -96,3 +97,5 @@ void median(std::vector<int>& data){
     }
 
 }
+
+
